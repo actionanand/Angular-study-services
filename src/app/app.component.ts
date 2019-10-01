@@ -1,38 +1,22 @@
-import { Component } from '@angular/core';
-import { LoggingService } from './Service/logging.service';
+import { Component, OnInit } from '@angular/core';
+import { AccountService } from './Service/account.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [LoggingService]
+  providers: [AccountService]
   
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  constructor (private logService: LoggingService) {}
+  constructor (private accService: AccountService) {}
 
-  accounts = [
-    {
-      name: 'Master Account',
-      status: 'active'
-    },
-    {
-      name: 'Testaccount',
-      status: 'inactive'
-    },
-    {
-      name: 'Hidden Account',
-      status: 'unknown'
-    }
-  ];
+  accounts = [];
 
-  onAccountAdded(newAccount: {name: string, status: string}) {
-    this.accounts.push(newAccount);
-  }
+  ngOnInit(){
+    this.accounts = this.accService.accounts;
 
-  onStatusChanged(updateInfo: {id: number, newStatus: string}) {
-    this.accounts[updateInfo.id].status = updateInfo.newStatus;
   }
 }
