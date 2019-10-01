@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
+import { LoggingService } from './Service/logging.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [LoggingService]
+  
 })
+
 export class AppComponent {
+
+  constructor (private logService: LoggingService) {}
+
   accounts = [
     {
       name: 'Master Account',
