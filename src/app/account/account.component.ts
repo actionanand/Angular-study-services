@@ -13,6 +13,7 @@ export class AccountComponent {
   constructor(private accSrvice: AccountService){}
 
   onSetTo(status: string) {
-    this.accSrvice.changeStatus(this.id, status)
+    this.accSrvice.changeStatus(this.id, status);
+    this.accSrvice.statusUpdated.emit(status);
   }
 }
